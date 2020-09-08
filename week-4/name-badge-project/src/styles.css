@@ -1,0 +1,19 @@
+#formDiv {
+    border: 2px solid black;
+    border-radius: 8px;
+    margin: 10px;
+}
+#pinputBox {
+    border: 2px solid black;
+}
+.inputSmall {
+    border:2px solid black;
+}
+#submittedBadgeBox {
+    border: 2px solid black;
+    border-radius: 8px;
+    margin: 10px;
+}
+#aboutYouBox {
+    border: 2px solid black;
+}
