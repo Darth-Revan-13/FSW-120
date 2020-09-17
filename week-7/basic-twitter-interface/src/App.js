@@ -1,5 +1,7 @@
 import React from 'react';
 import Tweet from './Tweet';
+import './styles.css';
+import './images.jpg';
 
 class App extends React.Component {
     constructor() {
@@ -15,7 +17,8 @@ class App extends React.Component {
             atNameItem: "",
             dateItem: "",
             timeItem: "",
-            dateAndTimeItem: []
+            dateAndTimeItem: [],
+            completedTweet: []
         }
         this.handleChange = this.handleChange.bind(this)
     }
@@ -30,14 +33,13 @@ class App extends React.Component {
     addToList=(event) => {
         event.preventDefault();
         this.setState({
-            // badge: this.state.badge.concat("Name: " + this.state.firstName + " " + this.state.lastName + "Phone: " + this.state.phone + "\n" + "Place of Birth: " + this.state.placeOfBirth + "Favorite Food: " + this.state.favoriteFood + "\n" + "Email: " + this.state.email + "\n" + this.state.aboutYou)
-
             authorNameItem: this.state.authorName,
             tweetTextItem: this.state.tweetText,
             atNameItem: this.state.atName,
             dateItem: this.state.date,
             timeItem: this.state.time,
-            dateAndTimeItem: this.state.dateAndTimeItem.concat(this.state.date + " " + this.state.time)
+            dateAndTimeItem: this.state.dateAndTimeItem.concat(this.state.date + " " + this.state.time),
+            completedTweet: this.state.completedTweet.concat(`${this.state.authorName} @${this.state.atName} ${this.state.date} ${this.state.time} | ${this.state.tweetText}`)
         })
     }
     
@@ -45,6 +47,7 @@ class App extends React.Component {
         return (
             <div>
                 <center>
+                    <h2><img src="./images.jpg"/> Not Twitter <img src="./images.jpg"/></h2>
                     <div id="formDiv">
                         <form>
                             <input 
@@ -63,7 +66,7 @@ class App extends React.Component {
                                 placeholder="@name here..."
                                 min="3"
                                 required
-                                onchange={this.handleChange}
+                                onChange={this.handleChange}
                             />
                             <input
                                 type="date"
@@ -71,7 +74,7 @@ class App extends React.Component {
                                 name="date"
                                 placeholder="Date"
                                 required
-                                onchange={this.handleChange}
+                                onChange={this.handleChange}
                             />
                             <input
                                 type="time"
@@ -79,7 +82,7 @@ class App extends React.Component {
                                 name="time"
                                 placeholder="Time"
                                 required
-                                onchange={this.handleChange}
+                                onChange={this.handleChange}
                             />
                             <br/>
                             <input 
@@ -94,11 +97,11 @@ class App extends React.Component {
                             <button onClick={this.addToList}>Tweet</button>
                         </form>
                     </div>
-                        <div id="tweetList">
-                            <Tweet completedTweet = {this.state.authorNameItem}/> <Tweet completedTweet = {this.state.atNameItem}/> <Tweet completedTweet = {this.state.dateAndTimeItem}/> <br/>
-                            <Tweet completedTweet = {this.state.tweetTextItem}/>
+                        <div>
+                            {/* <Tweet completedTweet = {this.state.authorNameItem}/> <Tweet completedTweet = {this.state.atNameItem}/> <Tweet completedTweet = {this.state.dateAndTimeItem}/> <br/>
+                            <Tweet completedTweet = {this.state.tweetTextItem}/> */}
+                            <Tweet tweetLists={this.state.completedTweet}/>
                             <br/>
-
                         </div>
                 </center>
             </div> 
