@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Tweet from './Tweet';
 import './styles.css';
 import './images.jpg';
@@ -28,6 +28,12 @@ class App extends React.Component {
         this.setState({
             [name]: value
         })
+    }
+
+    delete(id){
+        this.setState(prevState => ({
+            data: prevState.data.filter(el => el != id )
+        }));
     }
 
     addToList=(event) => {
@@ -102,6 +108,7 @@ class App extends React.Component {
                             <Tweet completedTweet = {this.state.tweetTextItem}/> */}
                             <Tweet tweetLists={this.state.completedTweet}/>
                             <br/>
+                            <Tweet items={this.state.items} _handleDelete={this.delete.bind(this)}/>
                         </div>
                 </center>
             </div> 
